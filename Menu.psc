@@ -1,3 +1,67 @@
+SubProceso EscrituraDeCartaCorazon ( carta )
+	Definir corazon,baraja Como Caracter;
+	Dimension corazon[6];
+	definir i Como Entero;
+	corazon[0] <- " ____ ";
+	corazon[1] <- Concatenar("|",Concatenar(carta,"   |"));
+	corazon[2] <- "|(\/)|";
+	corazon[3] <- "| \/ |";
+	corazon[4] <- Concatenar("|   ",Concatenar(carta,"|"));
+	corazon[5] <- "`----`";
+	
+	para i<-0 Hasta 5 Con Paso 1 Hacer
+		Escribir corazon[i];
+	FinPara
+FinSubProceso
+
+SubProceso EscrituraDeCartaDiamante ( carta )
+	Definir diamante,baraja Como Caracter;
+	Dimension diamante[6];
+	definir i Como Entero;
+	diamante[0] <- " ____ ";
+	diamante[1] <- Concatenar("|",Concatenar(carta,"   |"));
+	diamante[2] <- "| /\ |";
+	diamante[3] <- "| \/ |";
+	diamante[4] <- Concatenar("|   ",Concatenar(carta,"|"));
+	diamante[5] <- "`----`";
+	
+	para i<-0 Hasta 5 Con Paso 1 Hacer
+		Escribir diamante[i];
+	FinPara
+FinSubProceso
+
+SubProceso EscrituraDeCartaPicas( carta )
+	Definir picas,baraja Como Caracter;
+	Dimension picas[6];
+	definir i Como Entero;
+	picas[0] <- " ____ ";
+	picas[1] <- Concatenar("|",Concatenar(carta,"   |"));
+	picas[2] <- "| /\ |";
+	picas[3] <- "|(__)|";
+	picas[4] <- Concatenar("| /\",Concatenar(carta,"|"));
+	picas[5] <- "`----`";
+	
+	para i<-0 Hasta 5 Con Paso 1 Hacer
+		Escribir picas[i];
+	FinPara
+FinSubProceso
+
+SubProceso EscrituraDeCartaTrebol( carta )
+	Definir trebol,baraja Como Caracter;
+	Dimension trebol[6];
+	definir i Como Entero;
+	trebol[0] <- " ____ ";
+	trebol[1] <- Concatenar("|",Concatenar(carta,"   |"));
+	trebol[2] <- "| &  |";
+	trebol[3] <- "|&|& |";
+	trebol[4] <- Concatenar("| | ",Concatenar(carta,"|"));
+	trebol[5] <- "`----`";
+	
+	para i<-0 Hasta 5 Con Paso 1 Hacer
+		Escribir trebol[i];
+	FinPara
+FinSubProceso
+
 Proceso MUENU
 	Definir EligeSalir Como Logico;
 	Definir eleccion Como Numeros;
@@ -70,10 +134,14 @@ Proceso MUENU
 	Hasta que EligeSalir
 FinProceso
 
+//######################## ..............:::::MENU ::::::.............######################################
 
 SubProceso menuBlackJack
+	Limpiar Pantalla;
+	//Opciones de menu
 	Definir EligeSalir Como Logico;
 	Definir eleccion Como Numeros;
+	//cargamos el mazo
 	Definir baraja, aux1, aux2 Como Caracter;
 	Dimension baraja[13,4];
 	definir i, j Como Entero;
@@ -84,11 +152,12 @@ SubProceso menuBlackJack
 	para i <- 0 Hasta 12 Hacer
 		para j <- 0 hasta 3 Hacer
 			baraja[i,j] <- Concatenar(Concatenar(Subcadena(aux1,i,i),Subcadena(aux2,j,j)),"V");
-			//			Escribir  baraja[i,j];
 		FinPara
 	FinPara
 	
-	Limpiar Pantalla;
+	
+	definir plata Como Real;
+	plata <- 0;
 	
 	EligeSalir<-Falso;
 	
@@ -106,18 +175,19 @@ SubProceso menuBlackJack
 		
 		Segun eleccion Hacer
 			1: 
-				Escribir  "funcion 1";
-				PintarCarta(tomarCarta(baraja));
-				para i <- 0 Hasta 12 Hacer
-					para j <- 0 hasta 3 Hacer
-						si Subcadena(baraja[i,j],2,2) = "V" Entonces
-							Escribir Sin Saltar baraja[i,j], "    ";
-						FinSi
-					FinPara
-				FinPara
+				si plata > 0 Entonces
+					apostar(plata , baraja);
+				SiNo
+					Escribir "Debe ingresar Dinero para poder apostar.";
+				FinSi
 				
 			2: 
-				Escribir 'Funcion 2';
+				Repetir
+					Escribir "Debe ingresar dinero para poder jugar :";
+					leer plata;
+					Limpiar Pantalla;
+				Hasta Que plata > 0
+				
 			3: EligeSalir<-Verdadero;
 				
 			De Otro Modo:
@@ -125,83 +195,6 @@ SubProceso menuBlackJack
 		FinSegun
 	Hasta que EligeSalir
 FinSubProceso
-
-//SubProceso corazon <- EscrituraDeCartaCorazon ( carta )
-//	Definir corazon,baraja Como Caracter;
-//	Dimension corazon[6];
-//	definir i Como Entero;
-//	corazon[0] <- " ____ ";
-//	corazon[1] <- Concatenar("|",Concatenar(carta,"   |"));
-//	corazon[2] <- "|(\/)|";
-//	corazon[3] <- "| \/ |";
-//	corazon[4] <- Concatenar("|   ",Concatenar(carta,"|"));
-//	corazon[5] <- "`----`";
-//FinSubProceso
-
-SubProceso EscrituraDeCartaCorazon ( carta )
-	Definir corazon,baraja Como Caracter;
-	Dimension corazon[6];
-	definir i Como Entero;
-	corazon[0] <- " ____ ";
-	corazon[1] <- Concatenar("|",Concatenar(carta,"   |"));
-	corazon[2] <- "|(\/)|";
-	corazon[3] <- "| \/ |";
-	corazon[4] <- Concatenar("|   ",Concatenar(carta,"|"));
-	corazon[5] <- "`----`";
-	
-	para i<-0 Hasta 5 Con Paso 1 Hacer
-		Escribir corazon[i];
-	FinPara
-FinSubProceso
-
-SubProceso EscrituraDeCartaDiamante ( carta )
-	Definir diamante,baraja Como Caracter;
-	Dimension diamante[6];
-	definir i Como Entero;
-	diamante[0] <- " ____ ";
-	diamante[1] <- Concatenar("|",Concatenar(carta,"   |"));
-	diamante[2] <- "| /\ |";
-	diamante[3] <- "| \/ |";
-	diamante[4] <- Concatenar("|   ",Concatenar(carta,"|"));
-	diamante[5] <- "`----`";
-	
-	para i<-0 Hasta 5 Con Paso 1 Hacer
-		Escribir diamante[i];
-	FinPara
-FinSubProceso
-
-SubProceso EscrituraDeCartaPicas( carta )
-	Definir picas,baraja Como Caracter;
-	Dimension picas[6];
-	definir i Como Entero;
-	picas[0] <- " ____ ";
-	picas[1] <- Concatenar("|",Concatenar(carta,"   |"));
-	picas[2] <- "| /\ |";
-	picas[3] <- "|(__)|";
-	picas[4] <- Concatenar("| /\",Concatenar(carta,"|"));
-	picas[5] <- "`----`";
-	
-	para i<-0 Hasta 5 Con Paso 1 Hacer
-		Escribir picas[i];
-	FinPara
-FinSubProceso
-
-SubProceso EscrituraDeCartaTrebol( carta )
-	Definir trebol,baraja Como Caracter;
-	Dimension trebol[6];
-	definir i Como Entero;
-	trebol[0] <- " ____ ";
-	trebol[1] <- Concatenar("|",Concatenar(carta,"   |"));
-	trebol[2] <- "| &  |";
-	trebol[3] <- "|&|& |";
-	trebol[4] <- Concatenar("| | ",Concatenar(carta,"|"));
-	trebol[5] <- "`----`";
-	
-	para i<-0 Hasta 5 Con Paso 1 Hacer
-		Escribir trebol[i];
-	FinPara
-FinSubProceso
-
 
 SubProceso  PintarCarta(cartaRecibida)
 	definir palo, valorDeCarta , carta Como Caracter;
@@ -212,7 +205,7 @@ SubProceso  PintarCarta(cartaRecibida)
 	palo <- Subcadena(cartaRecibida,1,1);
 	
 	si palo = "C" Entonces
-		EscrituraDeCartaCorazon(valorDeCarta);
+		EscrituraDeCartaCorazon(valorDeCarta);	
 	FinSi
  	
 	si palo = "D" Entonces
@@ -229,7 +222,7 @@ FinSubProceso
 
 
 
-Funcion  cartaRetornada <- tomarCarta(baraja por referencia)
+SubProceso cartaRetornada <- tomarCarta(baraja por referencia)
 	Definir aux1, aux2 , azarNum , azarTipo, azarValor , cartaRetornada Como Caracter;
 	
 	definir i, j , n Como Entero;
@@ -254,21 +247,19 @@ Funcion  cartaRetornada <- tomarCarta(baraja por referencia)
 		n <- n+1;
 	Hasta Que bandera o n=52
 	
-FinFuncion
-
-
+FinSubproceso
 
 
 SubProceso  jugarBlackJack(cartaRecibida)
-	definir mano , player Como Caracter;
-	Dimension mano[11], player[11];
+	definir mano , player, carta Como Caracter;
+	Dimension mano[11], player[11], carta[6];
 	definir i, j Como Entero;
 	
 	valorDeCarta <- Subcadena(cartaRecibida,0,0);
 	palo <- Subcadena(cartaRecibida,1,1);
 	
 	si palo = "C" Entonces
-		EscrituraDeCartaCorazon(valorDeCarta);
+		 EscrituraDeCartaCorazon(valorDeCarta);
 	FinSi
  	
 	si palo = "D" Entonces
@@ -282,3 +273,83 @@ SubProceso  jugarBlackJack(cartaRecibida)
 	FinSi
 	
 FinSubProceso
+
+
+//#############################################....::::APOSTAR :::::....###########################################################
+SubProceso apostar(plata Por Referencia , baraja Por Referencia)
+	Definir apuesta Como Real;
+	Repetir
+		Escribir "Cuanto dinero desea apostar :";
+		leer apuesta;
+		Limpiar Pantalla;
+	Hasta Que plata > 0 y apuesta < plata
+	
+	repartirCartas(plata, apuesta , baraja);
+FinSubProceso
+
+
+//#############################################....::::Repartir Cartas :::::....###########################################################
+
+funcion repartirCartas(plata Por Referencia, apuesta Por Referencia, baraja Por Referencia)
+	Definir  manoJugador , manoCrupier Como Caracter;
+	Dimension manojugador[10], manoCrupier[10];
+	definir i, j ,valorDeCartaJugador, valorDeCartaCrupier, puntosJugador, puntosCrupier Como Entero;
+	definir plantarse Como Logico;
+	
+	//	seteamos el puntaje de cartas del jugador y del crupier en 0
+	puntosJugador <- 0;
+	puntosCrupier <- 0;
+	
+	// cargamos las manos con un caractter inicial para poder trabajarlas luego
+	para i <- 0 Hasta 9 Con Paso 1 Hacer
+		manoJugador[i] <- "vacia";
+		manoCrupier[i] <- "vacia";
+	FinPara
+	
+	//Cargamos las 2 cartas del jugador
+	manoJugador[0] <- tomarCarta(baraja);
+	manoJugador[1] <- tomarCarta(baraja);
+	
+	//	mostramos las cartas del jugador
+	Escribir "Tu mano es: ";
+	para i <- 0 hasta 9 Hacer
+		si manoJugador[i] <> "vacia" Entonces
+			PintarCarta(manoJugador[i]);
+			puntosJugador <- puntosJugador + devolverPuntos(manoJugador[i],puntosJugador);
+		FinSi
+	FinPara
+	escribir "Los puntos del jugador son " , puntosJugador;
+	Escribir "";
+	
+	
+	Escribir "La mano del crupier es: ";
+	manoCrupier[0] <- tomarCarta(baraja);
+	para i <- 0 hasta 9 Hacer
+		si manoCrupier[i] <> "vacia" Entonces
+			PintarCarta(manoCrupier[i]);
+			puntosCrupier <- puntosCrupier + devolverPuntos(manoCrupier[i],puntosCrupier);
+		FinSi
+	FinPara
+	escribir "Los puntos del jugador son " , puntosCrupier;
+FinFuncion
+
+
+Funcion puntos <- devolverPuntos(carta , puntaje )
+	definir puntos Como Entero;
+	si Subcadena(carta,0,0) = "J" o Subcadena(carta,0,0) = "Q" o Subcadena(carta,0,0) = "K" o Subcadena(carta,0,0) = "A" Entonces
+		si Subcadena(carta,0,0) <> "A" Entonces
+			puntos <- 10;
+		SiNo
+			si puntaje + 11 > 22 Entonces
+				puntos <- 1;
+			SiNo
+				puntos <- 11;
+			FinSi
+		FinSi
+	SiNo
+		puntos <- ConvertirANumero(Subcadena(carta,0,0));
+	FinSi
+FinFuncion
+
+
+	
