@@ -410,6 +410,7 @@ SubProceso turnoDelJugador(plata Por Referencia, apuesta Por Referencia, baraja 
 			mostrarCartasSobreLaMesaDelCrupier(manoCrupier  , puntosCrupier);
 			Segun eleccion Hacer
 				1: 
+					Escribir "Eligio mano 1 paso por aqui";
 					manoJugador[ciclo] <- tomarCarta(baraja);
 					ciclo <- ciclo +1;
 	
@@ -481,58 +482,8 @@ SubProceso turnoDelCrupier(plata Por Referencia, apuesta Por Referencia, baraja 
 	FinMientras
 FinSubProceso
 
-//#############################################....:::Menú Apuestas::::....#################################################
-SubProceso menuApuesta(plata Por Referencia, apuesta Por Referencia, baraja Por Referencia)
-	Limpiar Pantalla;
-	definir Salir Como Logico;
-	Definir i , j , eleccion  Como Entero;
-	
-	Salir<-Falso;
-
-	Repetir
-		Escribir ' DINERO DISPONIBLE : $', plata;
-		Escribir ' ';
-		Escribir 'Elija una opción:';
-
-			Escribir '  1 - Repartir';
-			Escribir '  2 - Repasar Reglsd';
-			Escribir '  3 - Salir';
-			
-
-		Escribir Sin Saltar'Seleccione una opción ---';
-		Leer eleccion;
-		Limpiar Pantalla;
-		
-		Segun eleccion Hacer
-			1: 
-				repartirCartas(plata , apuesta , baraja);
-			2: 
-				Escribir "Las reglas son";
-			3:
-				Salir<-Verdadero;	
-			De Otro Modo:
-				Escribir 'eleccionción  no válida!';
-		FinSegun
-	Hasta que Salir
-	
-FinSubProceso
 
 
 
-//#############################################....:::Control de puntos y acciones::::....#################################################
-SubProceso controlGanador (plata Por Referencia, apuesta Por Referencia, puntosJugador Por Referencia , puntosCrupier Por Referencia)
-	
-		si puntosCrupier < puntosJugador Entonces
-			plata <- plata + apuesta;
-			Escribir " GANO :) ";
-			Esperar 1 segundo;
-		FinSi
-	
-		si puntosCrupier > puntosJugador Entonces
-			plata <- plata - apuesta;
-			Escribir " PERDIO :( ";
-			Esperar 1 segundo;
-		FinSi
-		
-FinSubProceso
+
 	
