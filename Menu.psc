@@ -101,8 +101,7 @@ Proceso MUENU
 		Escribir '  6 - Opcion 5';
 		Escribir '  7 - Opcion 6';
 		Escribir '  8 - Opcion 7';
-		Escribir '  9 - Opcion 8';
-		Escribir '  0 - Salir';
+		Escribir '  9 - Salir';
 		Escribir ' ';
 		
 		Escribir Sin Saltar'Donde sea apostar -';
@@ -125,16 +124,14 @@ Proceso MUENU
 			8: 
 				Escribir 'Funcion 8';
 			9:
-				Escribir 'Funcion 9';
-				
-			0: EligeSalir<-Verdadero;
+				EligeSalir<-Verdadero;
 			De Otro Modo:
 				Escribir 'eleccionción  no válida!';
 		FinSegun
 	Hasta que EligeSalir
 FinProceso
 
-//######################## ..............:::::MENU ::::::.............######################################
+//######################## ..............:::::MENU BlackJack::::::.............######################################
 
 SubProceso menuBlackJack
 	Limpiar Pantalla;
@@ -156,9 +153,9 @@ SubProceso menuBlackJack
 	FinPara
 	
 	
-	definir plata Como Real;
+	definir plata , ingreso Como Real;
 	plata <- 0;
-	
+	ingreso<- 0;
 	EligeSalir<-Falso;
 	
 	Repetir
@@ -166,10 +163,11 @@ SubProceso menuBlackJack
 		Escribir 'Elija una opción:';
 		Escribir '  1 - Jugar';
 		Escribir '  2 - Ingresar Dinero';
-		Escribir '  3 - Salir';
+		Escribir '  3 - Consultar Saldo';
+		Escribir '  4 - Salir';
 		Escribir ' ';
 		
-		Escribir Sin Saltar'Seleccione una opción -';
+		Escribir Sin Saltar'Seleccione una opción ---';
 		Leer eleccion;
 		Limpiar Pantalla;
 		
@@ -178,23 +176,33 @@ SubProceso menuBlackJack
 				si plata > 0 Entonces
 					apostar(plata , baraja);
 				SiNo
-					Escribir "Debe ingresar Dinero para poder apostar.";
+					Escribir "Debe ingresar Dinero para poder apostar :";
 				FinSi
 				
 			2: 
 				Repetir
 					Escribir "Debe ingresar dinero para poder jugar :";
-					leer plata;
+					leer ingreso;
+					plata <- plata + ingreso;
 					Limpiar Pantalla;
+					si ingreso > 0 Entonces
+						Escribir "Felicidades Ingreso $", ingreso ;
+						esperar 2 Segundos;
+						Limpiar Pantalla;
+					FinSi
 				Hasta Que plata > 0
 				
-			3: EligeSalir<-Verdadero;
-				
+			3: 
+				Escribir "Su saldo es de : ", plata;
+			4:
+				EligeSalir<-Verdadero;
 			De Otro Modo:
 				Escribir 'eleccionción  no válida!';
 		FinSegun
 	Hasta que EligeSalir
 FinSubProceso
+
+//#############################################....::::Pintar Carta :::::....###########################################################
 
 SubProceso  PintarCarta(cartaRecibida)
 	definir palo, valorDeCarta , carta Como Caracter;
@@ -221,7 +229,7 @@ SubProceso  PintarCarta(cartaRecibida)
 FinSubProceso
 
 
-
+//#############################################....::::Devolver una carta al azar :::::....###########################################################
 SubProceso cartaRetornada <- tomarCarta(baraja por referencia)
 	Definir aux1, aux2 , azarNum , azarTipo, azarValor , cartaRetornada Como Caracter;
 	
@@ -250,40 +258,26 @@ SubProceso cartaRetornada <- tomarCarta(baraja por referencia)
 FinSubproceso
 
 
-SubProceso  jugarBlackJack(cartaRecibida)
-	definir mano , player, carta Como Caracter;
-	Dimension mano[11], player[11], carta[6];
-	definir i, j Como Entero;
-	
-	valorDeCarta <- Subcadena(cartaRecibida,0,0);
-	palo <- Subcadena(cartaRecibida,1,1);
-	
-	si palo = "C" Entonces
-		 EscrituraDeCartaCorazon(valorDeCarta);
-	FinSi
- 	
-	si palo = "D" Entonces
-		EscrituraDeCartaDiamante(valorDeCarta);
-	FinSi
-	si palo = "P" Entonces
-		EscrituraDeCartaPicas(valorDeCarta);
-	FinSi
-	si palo = "T" Entonces
-		EscrituraDeCartaTrebol(valorDeCarta);
-	FinSi
-	
-FinSubProceso
-
 
 //#############################################....::::APOSTAR :::::....###########################################################
 SubProceso apostar(plata Por Referencia , baraja Por Referencia)
+	Limpiar Pantalla;
 	Definir apuesta Como Real;
 	Repetir
 		Escribir "Cuanto dinero desea apostar :";
 		leer apuesta;
 		Limpiar Pantalla;
+		si apuesta> plata Entonces
+			Escribir "La apuesta que estas ingresando supera a tu dinero actual -.-*";
+			Escribir "Presione una tecla para volver a intentar.";
+			Esperar Tecla;
+			Limpiar Pantalla;
+		FinSi
 	Hasta Que plata > 0 y apuesta < plata
 	
+	Limpiar Pantalla;
+	Escribir  " Repartiendo las cartas espere por favor... ";
+	Esperar 3 segundos;
 	repartirCartas(plata, apuesta , baraja);
 FinSubProceso
 
@@ -291,27 +285,63 @@ FinSubProceso
 //#############################################....::::Repartir Cartas :::::....###########################################################
 
 funcion repartirCartas(plata Por Referencia, apuesta Por Referencia, baraja Por Referencia)
+	Limpiar Pantalla;
 	Definir  manoJugador , manoCrupier Como Caracter;
-	Dimension manojugador[10], manoCrupier[10];
-	definir i, j ,valorDeCartaJugador, valorDeCartaCrupier, puntosJugador, puntosCrupier Como Entero;
-	definir plantarse Como Logico;
+	Dimension manojugador[11], manoCrupier[11];
+	definir i, j ,valorDeCartaJugador, valorDeCartaCrupier, puntosJugador, puntosCrupier , ciclo Como Entero;
+	definir turno Como Logico;
+		//	seteamos el puntaje de cartas del jugador y del crupier en 0
+		puntosJugador <- 0;
+		puntosCrupier <- 0;
+		
+		// cargamos las manos con un caracter inicial para poder trabajarlas luego
+		para i <- 0 Hasta 10 Con Paso 1 Hacer
+			manoJugador[i] <- "vacia";
+			manoCrupier[i] <- "vacia";
+		FinPara
+		
+		//Cargamos las 2 cartas del jugador
+		manoJugador[0] <- tomarCarta(baraja);
+		manoJugador[1] <- tomarCarta(baraja);
+		
+		//seteamos el turno del jugador en 1
+		ciclo<- 2;
+		
+		//Cargamos la mano del crupier
+		manoCrupier[0] <- tomarCarta(baraja);
+
+	//	mostramos las cartas del jugador
+		mostrarCartasSobreLaMesaDelJugador(manoJugador, puntosJugador);
+		
+		mostrarCartasSobreLaMesaDelCrupier(manoCrupier , puntosCrupier);
+		
+		si puntosJugador = 21 Entonces
+			
+			Escribir  "GANASTE FELICITACIONES BLACK JACK";
+			Escribir  "pulsa una tecla para continuar";
+			plata <- plata + apuesta;
+			Esperar Tecla;
+			limpiar pantalla;
+		SiNo
+			
+			//Turno del jugador
+			turno <- Verdadero;
+			turnoDelJugador(plata , apuesta, baraja,puntosJugador,puntosCrupier, manoJugador, manoCrupier, ciclo);
+			
+		FinSi
+		
+		
+
 	
-	//	seteamos el puntaje de cartas del jugador y del crupier en 0
+FinFuncion
+//#############################################....::::Mostrar la manos del jugador por pantalla :::::....###########################################################
+
+SubProceso mostrarCartasSobreLaMesaDelJugador(manoJugador Por Referencia , puntosJugador Por Referencia)
+	definir i  Como Entero;
 	puntosJugador <- 0;
-	puntosCrupier <- 0;
-	
-	// cargamos las manos con un caractter inicial para poder trabajarlas luego
-	para i <- 0 Hasta 9 Con Paso 1 Hacer
-		manoJugador[i] <- "vacia";
-		manoCrupier[i] <- "vacia";
-	FinPara
-	
-	//Cargamos las 2 cartas del jugador
-	manoJugador[0] <- tomarCarta(baraja);
-	manoJugador[1] <- tomarCarta(baraja);
-	
 	//	mostramos las cartas del jugador
 	Escribir "Tu mano es: ";
+	
 	para i <- 0 hasta 9 Hacer
 		si manoJugador[i] <> "vacia" Entonces
 			PintarCarta(manoJugador[i]);
@@ -320,23 +350,26 @@ funcion repartirCartas(plata Por Referencia, apuesta Por Referencia, baraja Por 
 	FinPara
 	escribir "Los puntos del jugador son " , puntosJugador;
 	Escribir "";
-	
-	
+FinSubProceso
+//#############################################....::::Mostrar la manos del jugador por pantalla :::::....###########################################################
+
+SubProceso mostrarCartasSobreLaMesaDelCrupier(manoCrupier Por Referencia , puntosCrupier Por Referencia)
+	definir i  Como Entero;
 	Escribir "La mano del crupier es: ";
-	manoCrupier[0] <- tomarCarta(baraja);
+	puntosCrupier <-0;
 	para i <- 0 hasta 9 Hacer
 		si manoCrupier[i] <> "vacia" Entonces
 			PintarCarta(manoCrupier[i]);
 			puntosCrupier <- puntosCrupier + devolverPuntos(manoCrupier[i],puntosCrupier);
 		FinSi
 	FinPara
-	escribir "Los puntos del jugador son " , puntosCrupier;
-FinFuncion
+	escribir "Los puntos del crupier " , puntosCrupier;
+FinSubProceso
 
-
+//#############################################....::::Devuelve los puntos de las cartas :::::....###########################################################
 Funcion puntos <- devolverPuntos(carta , puntaje )
 	definir puntos Como Entero;
-	si Subcadena(carta,0,0) = "J" o Subcadena(carta,0,0) = "Q" o Subcadena(carta,0,0) = "K" o Subcadena(carta,0,0) = "A" Entonces
+	si Subcadena(carta,0,0) = "J" o Subcadena(carta,0,0) = "Q" o Subcadena(carta,0,0) = "K" o Subcadena(carta,0,0) = "A" o Subcadena(carta,0,0) = "0" Entonces
 		si Subcadena(carta,0,0) <> "A" Entonces
 			puntos <- 10;
 		SiNo
@@ -352,4 +385,154 @@ Funcion puntos <- devolverPuntos(carta , puntaje )
 FinFuncion
 
 
+//#############################################....:::Turno del Jugador::::....#################################################
+SubProceso turnoDelJugador(plata Por Referencia, apuesta Por Referencia, baraja Por Referencia, puntosJugador Por Referencia, puntosCrupier Por Referencia ,manoJugador Por Referencia,manoCrupier Por Referencia, ciclo Por Referencia)
+	definir turno Como Logico;
+	definir plantarse, perdio Como Logico;
+	Definir i , j , eleccion Como Entero;
+	plantarse<-Falso;
+	perdio <- falso;
+	
+	
+	mientras (!plantarse y !perdio ) hacer
+
+			Escribir ' DINERO DISPONIBLE : $', plata;
+			Escribir ' ';
+			Escribir 'Elija una opción:';
+			
+			Escribir '  1 - Pedir carta';
+			Escribir '  2 - Plantarse';
+			
+			Escribir Sin Saltar'Seleccione una opción ---';
+			Leer eleccion;
+			Limpiar Pantalla;
+			mostrarCartasSobreLaMesaDelJugador(manoJugador, puntosJugador);
+			mostrarCartasSobreLaMesaDelCrupier(manoCrupier  , puntosCrupier);
+			Segun eleccion Hacer
+				1: 
+					manoJugador[ciclo] <- tomarCarta(baraja);
+					ciclo <- ciclo +1;
+	
+					si puntosJugador >21 Entonces
+						
+						perdio <- Verdadero;
+						plata <- plata - apuesta;
+						Escribir "PERDIOOOO.. SE PASO!! Toque una tecla para continuar";
+						Esperar Tecla;
+						Limpiar Pantalla;
+					FinSi
+				2: 
+					plantarse<-Verdadero;
+					turnoDelCrupier(plata , apuesta, baraja,puntosJugador,puntosCrupier, manoJugador, manoCrupier);
+				De Otro Modo:
+					Escribir 'eleccionción  no válida!';
+			FinSegun
+
+	FinMientras
+	
+FinSubProceso
+
+
+
+//#############################################....:::Turno del Crupier::::....#################################################
+
+SubProceso turnoDelCrupier(plata Por Referencia, apuesta Por Referencia, baraja Por Referencia, puntosJugador Por Referencia, puntosCrupier Por Referencia ,manoJugador Por Referencia,manoCrupier Por Referencia)
+	definir perdio Como Logico;
+	Definir i , j , eleccion , ciclo Como Entero;
+	perdio <- falso;
+	ciclo <- 1;
+	
+	mientras (!perdio ) hacer
+
+		Limpiar Pantalla;
+		mostrarCartasSobreLaMesaDelJugador(manoJugador, puntosJugador);
+		mostrarCartasSobreLaMesaDelCrupier(manoCrupier  , puntosCrupier);
+	
+
+		manoCrupier[ciclo] <- tomarCarta(baraja);
+		ciclo <- ciclo +1;
+		
+		si puntosCrupier > 21 Entonces
+			perdio <- verdadero;
+			Escribir "GANO";
+			plata <- plata + apuesta;
+		FinSi
+		
+		si puntosCrupier >= 17 y puntosCrupier < puntosJugador Entonces
+			perdio <- verdadero;
+			Escribir "GANO";
+			plata <- plata + apuesta;
+		FinSi
+		
+		si puntosCrupier >= 17 y puntosCrupier > puntosJugador Entonces
+			perdio <- verdadero;
+			Escribir "PERDIO";
+			plata <- plata - apuesta;
+		FinSi
+		
+		si puntosCrupier = puntosJugador Entonces
+			perdio <- verdadero;
+			Escribir "EMPATEEEE";
+		FinSi
+		Escribir "Esperee";
+		Escribir "Tomando otra carta el crupier";
+		Esperar 3 segundos;
+		Limpiar Pantalla;
+	FinMientras
+FinSubProceso
+
+//#############################################....:::Menú Apuestas::::....#################################################
+SubProceso menuApuesta(plata Por Referencia, apuesta Por Referencia, baraja Por Referencia)
+	Limpiar Pantalla;
+	definir Salir Como Logico;
+	Definir i , j , eleccion  Como Entero;
+	
+	Salir<-Falso;
+
+	Repetir
+		Escribir ' DINERO DISPONIBLE : $', plata;
+		Escribir ' ';
+		Escribir 'Elija una opción:';
+
+			Escribir '  1 - Repartir';
+			Escribir '  2 - Repasar Reglsd';
+			Escribir '  3 - Salir';
+			
+
+		Escribir Sin Saltar'Seleccione una opción ---';
+		Leer eleccion;
+		Limpiar Pantalla;
+		
+		Segun eleccion Hacer
+			1: 
+				repartirCartas(plata , apuesta , baraja);
+			2: 
+				Escribir "Las reglas son";
+			3:
+				Salir<-Verdadero;	
+			De Otro Modo:
+				Escribir 'eleccionción  no válida!';
+		FinSegun
+	Hasta que Salir
+	
+FinSubProceso
+
+
+
+//#############################################....:::Control de puntos y acciones::::....#################################################
+SubProceso controlGanador (plata Por Referencia, apuesta Por Referencia, puntosJugador Por Referencia , puntosCrupier Por Referencia)
+	
+		si puntosCrupier < puntosJugador Entonces
+			plata <- plata + apuesta;
+			Escribir " GANO :) ";
+			Esperar 1 segundo;
+		FinSi
+	
+		si puntosCrupier > puntosJugador Entonces
+			plata <- plata - apuesta;
+			Escribir " PERDIO :( ";
+			Esperar 1 segundo;
+		FinSi
+		
+FinSubProceso
 	
