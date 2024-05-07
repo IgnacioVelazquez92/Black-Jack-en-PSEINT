@@ -66,23 +66,17 @@ Proceso MUENU
 	Definir EligeSalir Como Logico;
 	Definir eleccion Como Numeros;
 	
-	Escribir " _______   __                      __           _____                      __       ";
-	Escribir "/       \ /  |                    /  |         /     |                    /  |      ";
-	Escribir "$$$$$$$  |$$ |  ______    _______ $$ |   __    $$$$$ |  ______    _______ $$ |   __ ";
-	Escribir "$$ |__$$ |$$ | /      \  /       |$$ |  /  |      $$ | /      \  /       |$$ |  /  |";
-	Escribir "$$    $$< $$ | $$$$$$  |/$$$$$$$/ $$ |_/$$/  __   $$ | $$$$$$  |/$$$$$$$/ $$ |_/$$/ ";
-	Escribir "$$$$$$$  |$$ | /    $$ |$$ |      $$   $$<  /  |  $$ | /    $$ |$$ |      $$   $$<  ";
-	Escribir "$$ |__$$ |$$ |/$$$$$$$ |$$ \_____ $$$$$$  \ $$ \__$$ |/$$$$$$$ |$$ \_____ $$$$$$  \ ";
-	Escribir "$$    $$/ $$ |$$    $$ |$$       |$$ | $$  |$$    $$/ $$    $$ |$$       |$$ | $$  |";
-	Escribir "$$$$$$$/  $$/  $$$$$$$/  $$$$$$$/ $$/   $$/  $$$$$$/   $$$$$$$/  $$$$$$$/ $$/   $$/ ";
-	Escribir "                                                                                    ";
-	
-	Escribir " ____    ____    ____    ____ ";
-	Escribir "|A   |  |A   |  |A   |  |A   |";
-	Escribir "|(\/)|  | /\ |  | /\ |  | &  |";
-	Escribir "| \/ |  | \/ |  |(__)|  |&|& |";
-	Escribir "|   A|  |   A|  | /\A|  | | A|";
-	Escribir "`----`  `----´  `----´  `----´";
+	Escribir "                     /$$                     /$$                                               /$$          ";
+	Escribir "                    | $$                    |__/                                              |__/          ";
+	Escribir "  /$$$$$$$  /$$$$$$ | $$ /$$   /$$  /$$$$$$$ /$$  /$$$$$$  /$$$$$$$         /$$$$$$$  /$$$$$$  /$$ /$$$$$$$ ";
+	Escribir " /$$_____/ /$$__  $$| $$| $$  | $$ /$$_____/| $$ /$$__  $$| $$__  $$       /$$_____/ /$$__  $$| $$| $$__  $$";
+	Escribir "|  $$$$$$ | $$  \ $$| $$| $$  | $$| $$      | $$| $$  \ $$| $$  \ $$      | $$      | $$  \ $$| $$| $$  \ $$";
+	Escribir " \____  $$| $$  | $$| $$| $$  | $$| $$      | $$| $$  | $$| $$  | $$      | $$      | $$  | $$| $$| $$  | $$";
+	Escribir " /$$$$$$$/|  $$$$$$/| $$|  $$$$$$/|  $$$$$$$| $$|  $$$$$$/| $$  | $$      |  $$$$$$$|  $$$$$$/| $$| $$  | $$";
+	Escribir "|_______/  \______/ |__/ \______/  \_______/|__/ \______/ |__/  |__/       \_______/ \______/ |__/|__/  |__/";
+	Escribir "                                                                                                            ";
+	Escribir "                                                                                                            ";
+	Escribir "                                                                                                            ";
 
 	Escribir 'Presione una tecla para empezar';
 	Esperar Tecla;
@@ -134,6 +128,38 @@ FinProceso
 //######################## ..............:::::MENU BlackJack::::::.............######################################
 
 SubProceso menuBlackJack
+	
+	
+	Escribir "                                                                                                                                                            ";
+	Escribir "                                                                                                                                                            ";
+	Escribir "BBBBBBBBBBBBBBBBB   lllllll                                      kkkkkkkk                  JJJJJJJJJJJ                                   kkkkkkkk           ";
+	Escribir "B::::::::::::::::B  l:::::l                                      k::::::k                  J:::::::::J                                   k::::::k           ";
+	Escribir "B::::::BBBBBB:::::B l:::::l                                      k::::::k                  J:::::::::J                                   k::::::k           ";
+	Escribir "BB:::::B     B:::::Bl:::::l                                      k::::::k                  JJ:::::::JJ                                   k::::::k           ";
+	Escribir "  B::::B     B:::::B l::::l   aaaaaaaaaaaaa      cccccccccccccccc k:::::k    kkkkkkk         J:::::J  aaaaaaaaaaaaa      cccccccccccccccc k:::::k    kkkkkkk";
+	Escribir "  B::::B     B:::::B l::::l   a::::::::::::a   cc:::::::::::::::c k:::::k   k:::::k          J:::::J  a::::::::::::a   cc:::::::::::::::c k:::::k   k:::::k ";
+	Escribir "  B::::BBBBBB:::::B  l::::l   aaaaaaaaa:::::a c:::::::::::::::::c k:::::k  k:::::k           J:::::J  aaaaaaaaa:::::a c:::::::::::::::::c k:::::k  k:::::k  ";
+	Escribir "  B:::::::::::::BB   l::::l            a::::ac:::::::cccccc:::::c k:::::k k:::::k            J:::::j           a::::ac:::::::cccccc:::::c k:::::k k:::::k   ";
+	Escribir "  B::::BBBBBB:::::B  l::::l     aaaaaaa:::::ac::::::c     ccccccc k::::::k:::::k             J:::::J    aaaaaaa:::::ac::::::c     ccccccc k::::::k:::::k    ";
+	Escribir "  B::::B     B:::::B l::::l   aa::::::::::::ac:::::c              k:::::::::::k  JJJJJJJ     J:::::J  aa::::::::::::ac:::::c              k:::::::::::k     ";
+	Escribir "  B::::B     B:::::B l::::l  a::::aaaa::::::ac:::::c              k:::::::::::k  J:::::J     J:::::J a::::aaaa::::::ac:::::c              k:::::::::::k     ";
+	Escribir "  B::::B     B:::::B l::::l a::::a    a:::::ac::::::c     ccccccc k::::::k:::::k J::::::J   J::::::Ja::::a    a:::::ac::::::c     ccccccc k::::::k:::::k    ";
+	Escribir "BB:::::BBBBBB::::::Bl::::::la::::a    a:::::ac:::::::cccccc:::::ck::::::k k:::::kJ:::::::JJJ:::::::Ja::::a    a:::::ac:::::::cccccc:::::ck::::::k k:::::k   ";
+	Escribir "B:::::::::::::::::B l::::::la:::::aaaa::::::a c:::::::::::::::::ck::::::k  k:::::kJJ:::::::::::::JJ a:::::aaaa::::::a c:::::::::::::::::ck::::::k  k:::::k  ";
+	Escribir "B::::::::::::::::B  l::::::l a::::::::::aa:::a cc:::::::::::::::ck::::::k   k:::::k JJ:::::::::JJ    a::::::::::aa:::a cc:::::::::::::::ck::::::k   k:::::k ";
+	Escribir "BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa   cccccccccccccccckkkkkkkk    kkkkkkk  JJJJJJJJJ       aaaaaaaaaa  aaaa   cccccccccccccccckkkkkkkk    kkkkkkk";
+	Escribir "                                                                                                                                                            ";
+
+	Escribir " ____    ____    ____    ____ ";
+	Escribir "|A   |  |A   |  |A   |  |A   |";
+	Escribir "|(\/)|  | /\ |  | /\ |  | &  |";
+	Escribir "| \/ |  | \/ |  |(__)|  |&|& |";
+	Escribir "|   A|  |   A|  | /\A|  | | A|";
+	Escribir "`----`  `----´  `----´  `----´";
+
+	
+	Esperar 2 Segundos;
+	
 	Limpiar Pantalla;
 	//Opciones de menu
 	Definir EligeSalir Como Logico;
@@ -193,7 +219,7 @@ SubProceso menuBlackJack
 				Hasta Que plata > 0
 				
 			3: 
-				Escribir "Su saldo es de : ", plata;
+				Escribir "Su saldo es de : $", plata;
 			4:
 				EligeSalir<-Verdadero;
 			De Otro Modo:
@@ -264,7 +290,7 @@ SubProceso apostar(plata Por Referencia , baraja Por Referencia)
 	Limpiar Pantalla;
 	Definir apuesta Como Real;
 	Repetir
-		Escribir "Cuanto dinero desea apostar :";
+		Escribir "Cuanto dinero desea apostar : $";
 		leer apuesta;
 		Limpiar Pantalla;
 		si apuesta> plata Entonces
@@ -273,7 +299,7 @@ SubProceso apostar(plata Por Referencia , baraja Por Referencia)
 			Esperar Tecla;
 			Limpiar Pantalla;
 		FinSi
-	Hasta Que plata > 0 y apuesta < plata
+	Hasta Que plata > 0 y apuesta <= plata
 	
 	Limpiar Pantalla;
 	Escribir  " Repartiendo las cartas espere por favor... ";
@@ -309,8 +335,7 @@ funcion repartirCartas(plata Por Referencia, apuesta Por Referencia, baraja Por 
 		
 		//Cargamos la mano del crupier
 		manoCrupier[0] <- tomarCarta(baraja);
-
-	//	mostramos las cartas del jugador
+		//	mostramos las cartas del jugador
 		mostrarCartasSobreLaMesaDelJugador(manoJugador, puntosJugador);
 		
 		mostrarCartasSobreLaMesaDelCrupier(manoCrupier , puntosCrupier);
@@ -329,10 +354,6 @@ funcion repartirCartas(plata Por Referencia, apuesta Por Referencia, baraja Por 
 			turnoDelJugador(plata , apuesta, baraja,puntosJugador,puntosCrupier, manoJugador, manoCrupier, ciclo);
 			
 		FinSi
-		
-		
-
-	
 FinFuncion
 //#############################################....::::Mostrar la manos del jugador por pantalla :::::....###########################################################
 
@@ -351,6 +372,8 @@ SubProceso mostrarCartasSobreLaMesaDelJugador(manoJugador Por Referencia , punto
 	escribir "Los puntos del jugador son " , puntosJugador;
 	Escribir "";
 FinSubProceso
+
+
 //#############################################....::::Mostrar la manos del jugador por pantalla :::::....###########################################################
 
 SubProceso mostrarCartasSobreLaMesaDelCrupier(manoCrupier Por Referencia , puntosCrupier Por Referencia)
@@ -410,15 +433,18 @@ SubProceso turnoDelJugador(plata Por Referencia, apuesta Por Referencia, baraja 
 			mostrarCartasSobreLaMesaDelCrupier(manoCrupier  , puntosCrupier);
 			Segun eleccion Hacer
 				1: 
-					Escribir "Eligio mano 1 paso por aqui";
 					manoJugador[ciclo] <- tomarCarta(baraja);
 					ciclo <- ciclo +1;
+					Limpiar Pantalla;
+					mostrarCartasSobreLaMesaDelJugador(manoJugador, puntosJugador);
+					mostrarCartasSobreLaMesaDelCrupier(manoCrupier  , puntosCrupier);
 	
 					si puntosJugador >21 Entonces
 						
 						perdio <- Verdadero;
 						plata <- plata - apuesta;
-						Escribir "PERDIOOOO.. SE PASO!! Toque una tecla para continuar";
+						Escribir "PERDIO , USTED SE PASO..";
+						Escribir "Presione una tecla para continuar...";
 						Esperar Tecla;
 						Limpiar Pantalla;
 					FinSi
@@ -449,37 +475,48 @@ SubProceso turnoDelCrupier(plata Por Referencia, apuesta Por Referencia, baraja 
 		mostrarCartasSobreLaMesaDelJugador(manoJugador, puntosJugador);
 		mostrarCartasSobreLaMesaDelCrupier(manoCrupier  , puntosCrupier);
 	
-
 		manoCrupier[ciclo] <- tomarCarta(baraja);
 		ciclo <- ciclo +1;
 		
 		si puntosCrupier > 21 Entonces
 			perdio <- verdadero;
-			Escribir "GANO";
+			Escribir "GANO , EL CRUPIER SE PASO. ";
+			Escribir "Presione una tecla para continuar...";
 			plata <- plata + apuesta;
+			Esperar Tecla;
 		FinSi
 		
 		si puntosCrupier >= 17 y puntosCrupier < puntosJugador Entonces
 			perdio <- verdadero;
-			Escribir "GANO";
+			Escribir "GANO , TU MANO FUE SUPERIOR A LA DEL CRUPIER.";
+			Escribir "Presione una tecla para continuar...";
 			plata <- plata + apuesta;
+			Esperar Tecla;
 		FinSi
 		
-		si puntosCrupier >= 17 y puntosCrupier > puntosJugador Entonces
+		si puntosCrupier >= 17 y puntosCrupier > puntosJugador Y puntosCrupier <22 Entonces
 			perdio <- verdadero;
-			Escribir "PERDIO";
+			Escribir "PERDIO , LA MANO DEL CRUPIER FUE SUPERIOR.";
+			Escribir "Presione una tecla para continuar...";
 			plata <- plata - apuesta;
+			Esperar Tecla;
 		FinSi
 		
 		si puntosCrupier = puntosJugador Entonces
 			perdio <- verdadero;
-			Escribir "EMPATEEEE";
+			Escribir "EMPATE , TU MANO COMO LA DEL CRUPIER VALEN IGUALES.";
+			Escribir "Presione una tecla para continuar...";
+			Esperar Tecla;
 		FinSi
-		Escribir "Esperee";
-		Escribir "Tomando otra carta el crupier";
-		Esperar 3 segundos;
+		
+		SI puntosCrupier < 17 Entonces
+			Escribir "Esperee";
+			Escribir "Tomando otra carta el crupier";
+			Esperar 3 segundos;
+		FinSi
 		Limpiar Pantalla;
 	FinMientras
+	
 FinSubProceso
 
 
