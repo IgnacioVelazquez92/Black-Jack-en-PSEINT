@@ -150,12 +150,13 @@ SubProceso menuBlackJack
 	Escribir "BBBBBBBBBBBBBBBBB   llllllll  aaaaaaaaaa  aaaa   cccccccccccccccckkkkkkkk    kkkkkkk  JJJJJJJJJ       aaaaaaaaaa  aaaa   cccccccccccccccckkkkkkkk    kkkkkkk";
 	Escribir "                                                                                                                                                            ";
 
-	Escribir " ____    ____    ____    ____ ";
-	Escribir "|A   |  |A   |  |A   |  |A   |";
-	Escribir "|(\/)|  | /\ |  | /\ |  | &  |";
-	Escribir "| \/ |  | \/ |  |(__)|  |&|& |";
-	Escribir "|   A|  |   A|  | /\A|  | | A|";
-	Escribir "`----`  `----´  `----´  `----´";
+	Escribir " ____    ____    ____    ____     ",".__                    .___.__                           ";
+	Escribir "|A   |  |A   |  |A   |  |A   |    ","|  |   _________     __| _/|__| ____    ____             ";
+	Escribir "|(\/)|  | /\ |  | /\ |  | &  |    ","|  |  /  _ \__  \   / __ | |  |/    \  / ___\            ";
+	Escribir "| \/ |  | \/ |  |(__)|  |&|& |    ","|  |_(  <_> ) __ \_/ /_/ | |  |   |  \/ /_/  >           ";
+	Escribir "|   A|  |   A|  | /\A|  | | A|    ","|____/\____(____  /\____ | |__|___|  /\___  / /\  /\  /\ ";
+	Escribir "`----`  `----´  `----´  `----´    ","                \/      \/         \//_____/  \/  \/  \/ ";
+	
 
 	
 	Esperar 2 Segundos;
@@ -502,7 +503,7 @@ SubProceso turnoDelCrupier(plata Por Referencia, apuesta Por Referencia, baraja 
 			Esperar Tecla;
 		FinSi
 		
-		si puntosCrupier = puntosJugador Entonces
+		si  puntosCrupier = puntosJugador y puntosCrupier >= 17 Entonces
 			perdio <- verdadero;
 			Escribir "EMPATE , TU MANO COMO LA DEL CRUPIER VALEN IGUALES.";
 			Escribir "Presione una tecla para continuar...";
